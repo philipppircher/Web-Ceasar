@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Ceasar</title>
+    <script>
+
+        // Encode
+        function getText(isDecodeNewInput){
+            // When decode textarea is new input
+            if (isDecodeNewInput){
+                encode()
+            } else{
+                decode();
+            }
+        }
+
+        function encode(){
+            var text = document.getElementById("dec").value;
+            console.log(text);
+            document.getElementById("enc").innerText = text;
+        }
+
+        // Decode
+        function decode(){
+            var text = document.getElementById("enc").value;
+            console.log(text);
+            document.getElementById("dec").innerText = text;
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <textarea id="dec" name="decodeLabel" rows="10" cols="30" oninput="getText(true)">
+            </textarea>
+        <textarea id="enc" name="encodeLabel" rows="10" cols="30" oninput="getText(false)">
+            </textarea>
+    </div>
+</body>
+</html>
