@@ -36,14 +36,27 @@
 
         function increaseShift(){
             valueToShiftChar++;
-            document.getElementById("currentShift").innerText = valueToShiftChar;
+            shiftText();
         }
 
         function decreaseShift(){
             valueToShiftChar--;
+            shiftText();
+        }
+
+        function shiftText(){
+            var chars;
+
+            for(let i=0; i < inputText.length; i++){
+                var temp = inputText.charAt(i)
+                temp = valueToShiftChar;       // shift char hopefully correct ;)
+                chars += temp; 
+            }
+
+            document.getElementById("dec").innerText = chars;
             document.getElementById("currentShift").innerText = valueToShiftChar;
         }
-        
+
     </script>
 </head>
 <body>
