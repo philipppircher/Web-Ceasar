@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Ceasar</title>
     <style>
-        textarea{
-            width: 300px;
-        }
+        
         button{
             width: 5%;
             height: 10%;
@@ -25,13 +23,13 @@
         function encode(){
             inputText = document.getElementById("dec").value;
             document.getElementById("enc").value = inputText;
-            
+            shiftText(valueToShiftChar);
         }
 
         function decode(){
             inputText = document.getElementById("enc").value; 
             document.getElementById("dec").value = inputText;
-            
+            shiftText(-valueToShiftChar);
         }
 
         function increaseShift(){
@@ -45,23 +43,23 @@
         }
 
         function shiftText(){
-            var chars;
+            var chars = "";
 
             for(let i=0; i < inputText.length; i++){
-                var temp = inputText.charAt(i)
-                temp = valueToShiftChar;       // shift char hopefully correct ;)
-                chars += temp; 
+                var temp = inputText.charCodeAt(i)
+                temp = temp.toString() + valueToShiftChar;    // shift char hopefully correct ;)
+                chars += temp.toString(); 
             }
 
-            document.getElementById("dec").innerText = chars;
-            document.getElementById("currentShift").innerText = valueToShiftChar;
+            document.getElementById("enc").value = chars;
+            document.getElementById("currentShift").value = valueToShiftChar;
         }
 
     </script>
 </head>
 <body>
     <div>
-        <textarea id="dec" name="decodeLabel" rows="10" cols="20">
+        <textarea id="dec" name="decodeLabel" rows="10" cols="10">
         </textarea>
         <br>
         <button type="button" id="btn_encode" onclick="encode()">Encode Text</button>
@@ -78,7 +76,7 @@
         <br>
         <br>
 
-        <textarea id="enc" name="encodeLabel" rows="10" cols="20">
+        <textarea id="enc" name="encodeLabel" rows="10" cols="10">
             </textarea>
         <br>
         <button type="button" id ="btn_decode" onclick="decode()">Decode Text</button>
