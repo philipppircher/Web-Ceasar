@@ -4,39 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Ceasar</title>
-    <script>
-
-        // Encode
-        function getText(isDecodeNewInput){
-            // When decode textarea is new input
-            if (isDecodeNewInput){
-                encode()
-            } else{
-                decode();
-            }
+    <style>
+        textarea{
+            text-align: left;
+        padding: 0,0,0,0;
+        width: 400px;
+        height: 200px;
         }
 
+    </style>
+    <script>
+        var inputText;
+        var valueToShiftChar = 0;
+
         function encode(){
+            inputText = document.getElementById("dec").value;
+            document.getElementById("enc").value = "";
+            document.getElementById("enc").value += inputText;
+            /*
             var text = document.getElementById("dec").value;
-            console.log(text);
             document.getElementById("enc").innerText = text;
+            */
         }
 
         // Decode
         function decode(){
+            inputText = document.getElementById("enc").value; 
+            document.getElementById("dec").value = inputText;
+            /*
             var text = document.getElementById("enc").value;
-            console.log(text);
-            document.getElementById("dec").innerText = text;
+            document.getElementById("dec").innerText = "";
+            */
         }
-
     </script>
 </head>
 <body>
     <div>
-        <textarea id="dec" name="decodeLabel" rows="10" cols="30" oninput="getText(true)">
+        <textarea id="dec" name="decodeLabel" rows="2" cols="20">
+        </textarea>
+        <br>
+        <button type="button" id="btn_encode" onclick="encode()">Encode Text</button>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <textarea id="enc" name="encodeLabel" rows="2" cols="20">
             </textarea>
-        <textarea id="enc" name="encodeLabel" rows="10" cols="30" oninput="getText(false)">
-            </textarea>
+        <br>
+        <button type="button" id ="btn_decode" onclick="decode()">Decode Text</button>
     </div>
 </body>
 </html>
