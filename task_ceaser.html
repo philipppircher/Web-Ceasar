@@ -6,12 +6,17 @@
     <title>Task Ceasar</title>
     <style>
         textarea{
-            text-align: left;
-        padding: 0,0,0,0;
-        width: 400px;
-        height: 200px;
+            width: 300px;
+        }
+        button{
+            width: 5%;
+            height: 10%;
+            font-size: 1em;
         }
 
+        label{
+            font-size: 1.7em;
+        }
     </style>
     <script>
         var inputText;
@@ -19,28 +24,31 @@
 
         function encode(){
             inputText = document.getElementById("dec").value;
-            document.getElementById("enc").value = "";
-            document.getElementById("enc").value += inputText;
-            /*
-            var text = document.getElementById("dec").value;
-            document.getElementById("enc").innerText = text;
-            */
+            document.getElementById("enc").value = inputText;
+            
         }
 
-        // Decode
         function decode(){
             inputText = document.getElementById("enc").value; 
             document.getElementById("dec").value = inputText;
-            /*
-            var text = document.getElementById("enc").value;
-            document.getElementById("dec").innerText = "";
-            */
+            
         }
+
+        function increaseShift(){
+            valueToShiftChar++;
+            document.getElementById("currentShift").innerText = valueToShiftChar;
+        }
+
+        function decreaseShift(){
+            valueToShiftChar--;
+            document.getElementById("currentShift").innerText = valueToShiftChar;
+        }
+        
     </script>
 </head>
 <body>
     <div>
-        <textarea id="dec" name="decodeLabel" rows="2" cols="20">
+        <textarea id="dec" name="decodeLabel" rows="10" cols="20">
         </textarea>
         <br>
         <button type="button" id="btn_encode" onclick="encode()">Encode Text</button>
@@ -48,9 +56,16 @@
         <br>
         <br>
         <br>
+
+        <button type="button" id="incrementChars" onclick="increaseShift()">+</button>
+        <button type="button" id="decrementChars" onclick="decreaseShift()">-</button>
+        <label for="shift" id="currentShift">0</label>
+
+        <br>
+        <br>
         <br>
 
-        <textarea id="enc" name="encodeLabel" rows="2" cols="20">
+        <textarea id="enc" name="encodeLabel" rows="10" cols="20">
             </textarea>
         <br>
         <button type="button" id ="btn_decode" onclick="decode()">Decode Text</button>
