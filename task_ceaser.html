@@ -46,9 +46,9 @@
             var chars = "";
 
             for(let i=0; i < inputText.length; i++){
-                var temp = inputText.charCodeAt(i)
-                temp = temp.toString() + valueToShiftChar;    // shift char hopefully correct ;)
-                chars += temp.toString(); 
+                var temp = inputText.charCodeAt(i);
+                temp = temp + valueToShiftChar;
+                chars += String.fromCharCode(temp);
             }
 
             document.getElementById("enc").value = chars;
