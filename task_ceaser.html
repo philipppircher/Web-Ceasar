@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Ceasar</title>
     <style>
-        
+
         button{
             width: 5%;
             height: 10%;
@@ -16,43 +16,75 @@
             font-size: 1.7em;
         }
     </style>
+
     <script>
         var inputText;
         var valueToShiftChar = 0;
+        var selection = "";
 
         function encode(){
+            selection = "encode";
             inputText = document.getElementById("dec").value;
+            cutStringUnwantedEmptySpaceAtEnd();
+
+
             document.getElementById("enc").value = inputText;
-            shiftText(valueToShiftChar);
+        }
+
+        function cutStringUnwantedEmptySpaceAtEnd(){
+            /// Todo
+            var emptySpaces = 0;
+
+            for(let i = 0; i < inputText.length; i++){
+                input
+                if (inputText.charCodeAt(i) == " " ){
+                    emptySpaces++;
+                } else{
+                    emptySpaces = 0;
+                }
+
+            }
         }
 
         function decode(){
+            selection = "decode";
             inputText = document.getElementById("enc").value; 
             document.getElementById("dec").value = inputText;
-            shiftText(-valueToShiftChar);
         }
 
         function increaseShift(){
             valueToShiftChar++;
-            shiftText();
+            encodeDecode();
         }
 
         function decreaseShift(){
-            valueToShiftChar--;
-            shiftText();
+                valueToShiftChar--;
+                encodeDecode();
         }
 
         function shiftText(){
             var chars = "";
-
             for(let i=0; i < inputText.length; i++){
                 var temp = inputText.charCodeAt(i);
                 temp = temp + valueToShiftChar;
                 chars += String.fromCharCode(temp);
             }
+            return chars;
+        }
 
-            document.getElementById("enc").value = chars;
-            document.getElementById("currentShift").value = valueToShiftChar;
+        function setEncodeLabelOrDecodeLabel(chars){
+            if (selection == "encode"){
+                document.getElementById("enc").value = chars;
+            } else{
+                document.getElementById("dec").value = chars;
+            }
+        }
+
+        function encodeDecode(){
+            var chars = shiftText();
+            setEncodeLabelOrDecodeLabel(chars);
+
+            document.getElementById("currentShift").innerText = valueToShiftChar;
         }
 
     </script>
